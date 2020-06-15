@@ -1,4 +1,4 @@
-# PointRCNN
+# PointRCNN (commented version by me not intended to be run)
 
 ## PointRCNN: 3D Object Proposal Generation and Detection from Point Cloud
 ![teaser](https://github.com/sshaoshuai/PointRCNN/blob/master/doc/teaser.png)
