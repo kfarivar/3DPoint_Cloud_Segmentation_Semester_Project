@@ -1,1 +1,3 @@
-# 3DPoint_Cloud_Segmentation_Semester_Project
+# 3DPoint Cloud Segmentation
+
+This repository contains the code used in my semester project to segment the lidar point cloud data.
