@@ -31,54 +31,30 @@ sh build_and_install.sh
 ```
 
 ## Dataset preparation
-Please  dataset and organize the downloaded files as follows: 
+Organize the files as follows (you can also make symbolic links in ubuntu instead actually copying the data): 
 ```
 PointRCNN
-├── data
-│   ├── KITTI
-│   │   ├── ImageSets
-│   │   ├── object
-│   │   │   ├──training
-│   │   │      ├──calib & velodyne & label_2 & image_2 & (optional: planes)
-│   │   │   ├──testing
-│   │   │      ├──calib & velodyne & image_2
+├-- data
+│   |-- bbox_data (the resulting bboxes and points from the finding_bboxes.ipynb in data_cleaning_and_preprocessing folder)
+│   |-- lidar_sampels (the result of two notebooks in lidar_sampling folder)
+|   |-- original_data (the original data)
+|   |-- final_cleaned_data (will be created after running the preprocess_data.py in tools folder)
 ├── lib
 ├── pointnet2_lib
 ├── tools
 ```
-
-
-### Quick demo
-You could run the following command to evaluate the pretrained model (set `RPN.LOC_XZ_FINE=False` since it is a little different with the default configuration): 
-```
-python eval_rcnn.py --cfg_file cfgs/default.yaml --ckpt PointRCNN.pth --batch_size 1 --eval_mode rcnn --set RPN.LOC_XZ_FINE False
-```
-
-## Inference
-* To evaluate a single checkpoint, run the following command with `--ckpt` to specify the checkpoint to be evaluated:
-```
-python eval_rcnn.py --cfg_file cfgs/default.yaml --ckpt ../output/rpn/ckpt/checkpoint_epoch_200.pth --batch_size 4 --eval_mode rcnn 
-```
-
-* To evaluate all the checkpoints of a specific training config file, add the `--eval_all` argument, and run the command as follows:
-```
-python eval_rcnn.py --cfg_file cfgs/default.yaml --eval_mode rcnn --eval_all
-```
-
-* To generate the results on the *test* split, please modify the `TEST.SPLIT=TEST` and add the `--test` argument. 
-
-Here you could specify a bigger `--batch_size` for faster inference based on your GPU memory. Note that the `--eval_mode` argument should be consistent with the `--train_mode` used in the training process. If you are using `--eval_mode=rcnn_offline`, then you should use `--rcnn_eval_roi_dir` and `--rcnn_eval_feature_dir` to specify the saved features and proposals of the validation set. Please refer to the training section for more details. 
+In all the following make sure you are in the tools folder.
 
 ## Training
-Currently, the two stages of PointRCNN are trained separately. Firstly, to use the ground truth sampling data augmentation for training, we should generate the ground truth database as follows:
+To preprocess the data in the bbox_data, lidar_sampels and original_data run preprocess_data.py
 ```
-python generate_gt_database.py --class_name 'Car' --split train
+python preprocess_data.py
 ```
 
 ### Training of RPN stage
-* To train the first proposal generation stage of PointRCNN with a single GPU, run the following command:
+* To train run the following command. --train_with_eval option can be used to evaluate the chckpoints as well; this gives a train_val_losses.npz file in the tools folder that has recorder the train and validation losses:
 ```
-python train_rcnn.py --cfg_file cfgs/default.yaml --batch_size 16 --train_mode rpn --epochs 200
+python train_rcnn.py --cfg_file cfgs/default.yaml --batch_size 16 --train_mode rpn --epochs 200 --train_with_eval
 ```
 
 After training, the checkpoints and training logs will be saved to the corresponding directory according to the name of your configuration file. Such as for the `default.yaml`, you could find the checkpoints and logs in the following directory:
@@ -86,9 +62,13 @@ After training, the checkpoints and training logs will be saved to the correspon
 PointRCNN/output/rpn/default/
 ```
 
+## Inference \ Validation
+* To evaluate a single checkpoint, run the following command with `--ckpt` to specify the checkpoint to be evaluated:
+```
+python eval_rcnn.py --cfg_file cfgs/default.yaml --ckpt ../output/rpn/default/ckpt/checkpoint_epoch_10.pth --batch_size 4 --eval_mode rpn
+```
 
-
-
-
-
-
+* To evaluate all the checkpoints of a specific training config file, add the `--eval_all` argument, and run the command as follows. This gives a performances.npz file whith all checkpoints' performances:
+```
+python eval_rcnn.py --cfg_file cfgs/default.yaml --eval_mode rpn --eval_all
+```
