@@ -11,4 +11,6 @@ Two nice tools for just looking at .las files are <https://plas.io/> and Cloud C
 
 In From\_pointcloud\_to\_image\_coordinates you find the code to transform a point from point cloud to image pixels.
 
+To see some of the questions I asked about the dataset read emails_about_dataset.pdf.
 
+Make sure to get the latest version of the data form Adrien Gressin. 
