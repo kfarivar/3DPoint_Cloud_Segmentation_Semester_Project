@@ -3,7 +3,7 @@
 ![teaser](https://github.com/KiyarashFarivar/3DPoint_Cloud_Segmentation_Semester_Project/blob/master/pipe_segmentation/rpn_network.png)
 
 ## Introduction
-This was an attempt to apply the method suggested in the [PointRCNN Paper](https://arxiv.org/abs/1812.04244) ([repo](https://github.com/sshaoshuai/PointRCNN)) to the pipes dataset provided (dataset only available through the epfl CVLAB). Only the first stage network was used. For more info reffer to the [report of the project](https://github.com/KiyarashFarivar/3DPoint_Cloud_Segmentation_Semester_Project/blob/master/Project_Report_and_Presentation/kiarash_farivar_semester_project_report.pdf).
+This was an attempt to apply the method suggested in the [PointRCNN Paper](https://arxiv.org/abs/1812.04244) ([repo](https://github.com/sshaoshuai/PointRCNN)) to the pipes dataset provided (dataset only available through the epfl CVLAB). Only the first stage network was used. For more info refer to the [report of the project](https://github.com/KiyarashFarivar/3DPoint_Cloud_Segmentation_Semester_Project/blob/master/Project_Report_and_Presentation/kiarash_farivar_semester_project_report.pdf). It is suggested to read the PointRCNN Paper before doing anything else. 
 
 ## Installation
 ### Requirements
@@ -31,7 +31,7 @@ sh build_and_install.sh
 ```
 
 ## Dataset preparation
-Organize the files as follows (you can also make symbolic links in ubuntu instead actually copying the data): 
+Organize the files as follows (you can also make symbolic links in ubuntu instead of actually copying the data): 
 ```
 PointRCNN
 ├-- data
@@ -72,3 +72,10 @@ python eval_rcnn.py --cfg_file cfgs/default.yaml --ckpt ../output/rpn/default/ck
 ```
 python eval_rcnn.py --cfg_file cfgs/default.yaml --eval_mode rpn --eval_all
 ```
+
+## A short discription of which file is what
+The central functions are in the tools folder. Most of the preprocessing and data cleaning happens in **preprocess_data.py**.
+
+As mentioned above the main script for training is **train_rcnn.py** here we define a dataset in **create_dataloader(logger)** function. the **PointRCNN()** class creates the network. Finally **train_utils.Trainer** is where training happens. The loss function is defined separately in **train_functions.model_joint_fn_decorator()**. 
+
+Use a text editor like vscode so you can follow the reference links to the definitions of classes and functions easily. I have tried my best to comment the code. For better understanding also refer to the commented version of the original code I have provided. 
