@@ -14,18 +14,18 @@ All the codes are tested in the following environment:
 
 ### Install PointRCNN 
 
-a. Clone the PointRCNN repository.
-```shell
-git clone --recursive https://github.com/sshaoshuai/PointRCNN.git
-```
-If you forget to add the `--recursive` parameter, just run the following command to clone the `Pointnet2.PyTorch` submodule.
-```shell
-git submodule update --init --recursive
-```
+a. Clone the whole repository.
 
 b. Install the dependent python libraries like `easydict`,`tqdm`, `tensorboardX ` etc.
+```shell
+conda create -n myenv python=3.7.4
+conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch 
+conda install scipy numba shapely
+conda install -c conda-forge easydict tqdm tensorboardx fire
+pip install scikit-image pyyaml
+```
 
-c. Build and install the `pointnet2_lib`, `iou3d`, `roipool3d` libraries by executing the following command:
+c. cd into pipe_segmentation folder. Build and install the `pointnet2_lib`, `iou3d`, `roipool3d` libraries by executing the following command:
 ```shell
 sh build_and_install.sh
 ```
