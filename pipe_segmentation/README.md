@@ -33,7 +33,7 @@ sh build_and_install.sh
 ## Dataset preparation
 Organize the files as follows (you can also make symbolic links in ubuntu instead of actually copying the data): 
 ```
-PointRCNN
+pipe_segmentation
 ├-- data
 │   |-- bbox_data (the resulting bboxes and points from the finding_bboxes.ipynb in data_cleaning_and_preprocessing folder)
 │   |-- lidar_sampels (the result of two notebooks in lidar_sampling folder)
