@@ -3,7 +3,7 @@
 ![teaser](https://github.com/KiyarashFarivar/3DPoint_Cloud_Segmentation_Semester_Project/blob/master/pipe_segmentation/rpn_network.png)
 
 ## Introduction
-This was an attempt to apply the method suggested in the [PointRCNN Paper](https://arxiv.org/abs/1812.04244) [repo](https://github.com/sshaoshuai/PointRCNN) to the pipes dataset provided (dataset only available through the epfl CVLAB). Only the first stage network was used. For more info reffer to the [report of the project]().
+This was an attempt to apply the method suggested in the [PointRCNN Paper](https://arxiv.org/abs/1812.04244) ([repo](https://github.com/sshaoshuai/PointRCNN)) to the pipes dataset provided (dataset only available through the epfl CVLAB). Only the first stage network was used. For more info reffer to the [report of the project](https://github.com/KiyarashFarivar/3DPoint_Cloud_Segmentation_Semester_Project/blob/master/Project_Report_and_Presentation/kiarash_farivar_semester_project_report.pdf).
 
 ## Installation
 ### Requirements
