@@ -1,13 +1,6 @@
-# PointRCNN
+# Pipe segmentation
 
-## PointRCNN: 3D Object Proposal Generation and Detection from Point Cloud
 ![teaser](https://github.com/KiyarashFarivar/3DPoint_Cloud_Segmentation_Semester_Project/blob/master/pipe_segmentation/rpn_network.png)
-
-Code release for the paper **PointRCNN:3D Object Proposal Generation and Detection from Point Cloud**, CVPR 2019.
-
-**Authors**: [Shaoshuai Shi](https://sshaoshuai.github.io/), [Xiaogang Wang](http://www.ee.cuhk.edu.hk/~xgwang/), [Hongsheng Li](http://www.ee.cuhk.edu.hk/~hsli/).
-
-[[arXiv]](https://arxiv.org/abs/1812.04244)&nbsp;  [[Project Page]](#)&nbsp;
 
 ## Introduction
 In this work, we propose the PointRCNN 3D object detector to directly generated accurate 3D box proposals from raw point cloud in a bottom-up manner, which are then refined in the canonical coordinate by the proposed bin-based 3D box regression loss. 
@@ -15,20 +8,13 @@ To the best of our knowledge, PointRCNN is **the first two-stage 3D object detec
 
 For more details of PointRCNN, please refer to [our paper](https://arxiv.org/abs/1812.04244) or [project page](#).
 
-### Supported features and ToDo list
-- [x] Multiple GPUs for training
-- [x] GPU version rotated NMS
-- [x] Faster PointNet++ inference and training supported by [Pointnet2.PyTorch](https://github.com/sshaoshuai/Pointnet2.PyTorch)
-- [x] PyTorch 1.0
-- [x] TensorboardX
-- [ ] Still in progress
 
 ## Installation
 ### Requirements
 All the codes are tested in the following environment:
-* Linux (tested on Ubuntu 14.04/16.04)
-* Python 3.6+
-* PyTorch 1.0
+* Linux (tested on Ubuntu 18.04.3 LTS)
+* Python 3.7.4+
+* PyTorch 1.2.0
 
 ### Install PointRCNN 
 
